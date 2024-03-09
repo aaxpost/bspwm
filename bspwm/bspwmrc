@@ -1,0 +1,28 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# xaa config start
+$HOME/.config/bspwm/launch.sh
+# polybar example &
+nitrogen --restore &
+bspc rule -a thunar state=floating
+# xaa config end
+xrandr --output DP1 --mode 1280x1024 --pos 1753x26 --rotate normal --output HDMI1 --off --output HDMI2 --primary --mode 1680x1050 --pos 0x0 --rotate normal --output HDMI3 --off --output VIRTUAL1 --off
+bspc monitor HDMI2 -d 1 2 3
+bspc monitor DP1 -d 4:vibtel 5:thunar 6:term   
+
+bspc config border_width         2
+bspc config window_gap           2
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# bspc rule -a Gimp desktop='^6' state=floating follow=on
+# bspc rule -a google-chrome desktop='^1'
+bspc rule -a Thunar state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+
+# setxkbmap -option grp:alt_shift_toggle us,ru,ua &
